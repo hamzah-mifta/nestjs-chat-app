@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { CryptoUtil } from 'src/common/utils/crypto.utils';
-import { UserRepository } from '../user/user.repository';
-import { RegisterDto } from '../user/dtos/register.dto';
+import { UserRepository } from '../user/repository/user.repository';
 import {
   CreatedResponse,
   HttpResponse,
@@ -17,6 +16,7 @@ import { captureError } from 'src/common/utils/sentry.utils';
 import { Logger } from 'src/common/utils/logger.utils';
 import { LoginDto } from './dtos/login.dto';
 import { JwtService } from '@nestjs/jwt';
+import { RegisterDto } from './dtos/register.dto';
 
 @Injectable()
 export class AuthService {
@@ -53,6 +53,7 @@ export class AuthService {
       const accessToken = await this.jwtService.signAsync(payload);
 
       const responseData = {
+        id: user._id,
         accessToken,
       };
 

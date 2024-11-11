@@ -1,5 +1,5 @@
 import { InjectModel } from '@nestjs/mongoose';
-import { User, UserDocument } from './schema/user.schema';
+import { User, UserDocument } from '../schema/user.schema';
 import { Model } from 'mongoose';
 
 export class UserRepository {
@@ -12,12 +12,27 @@ export class UserRepository {
     return await result.save();
   }
 
-  async findOne(param: object): Promise<User | null> {
-    return this.model.findOne(param).exec();
-  }
-
   async findByEmail(email: string): Promise<User | null> {
     return this.findOne({ email });
+  }
+
+  async findById(id: string): Promise<User | null> {
+    return this.model.findById(id);
+  }
+
+  async findWithProfileById(id: string): Promise<User | null> {
+    return this.model
+      .findById(id)
+      .select('_id email username profile createdAt updatedAt')
+      .populate({
+        path: 'profile',
+        select: '_id displayName birthday interests',
+      })
+      .exec();
+  }
+
+  async findOne(param: object): Promise<User | null> {
+    return this.model.findOne(param).exec();
   }
 
   async isEmailOrUsernameExist(
@@ -42,5 +57,9 @@ export class UserRepository {
     }
 
     return true;
+  }
+
+  async updateById(id: string, data: Partial<User>): Promise<User | null> {
+    return this.model.findByIdAndUpdate(id, data, { new: true }).exec();
   }
 }

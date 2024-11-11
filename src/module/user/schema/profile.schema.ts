@@ -1,27 +1,34 @@
-// import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-// import { HydratedDocument } from 'mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { HydratedDocument } from 'mongoose';
+import * as mongoose from 'mongoose';
 
-// export type ProfileDocument = HydratedDocument<Profile>;
+export type ProfileDocument = HydratedDocument<Profile>;
 
-// @Schema()
-// export class Profile {
-//   @Prop()
-//   displayName: string;
+@Schema()
+export class Profile {
+  @Prop({
+    type: mongoose.Schema.Types.ObjectId,
+    default: () => new mongoose.Types.ObjectId(),
+  })
+  _id: mongoose.Types.ObjectId;
 
-//   @Prop()
-//   gender: string;
+  @Prop()
+  displayName: string;
 
-//   @Prop()
-//   birthday: number;
+  @Prop()
+  gender: string;
 
-//   @Prop([String])
-//   interests: string[];
+  @Prop()
+  birthday: Date;
 
-//   @Prop()
-//   createdAt: number;
+  @Prop([String])
+  interests: string[];
 
-//   @Prop()
-//   updatedAt: number;
-// }
+  @Prop()
+  createdAt: number;
 
-// export const ProfileSchema = SchemaFactory.createForClass(Profile);
+  @Prop()
+  updatedAt: number;
+}
+
+export const ProfileSchema = SchemaFactory.createForClass(Profile);

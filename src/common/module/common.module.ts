@@ -3,21 +3,10 @@ import { CommonController } from '../controller/common.controller';
 import { CommonService } from '../service/common.service';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { limiterOptions } from 'src/constant/rate-limiter';
 
 @Module({
-  imports: [
-    ThrottlerModule.forRootAsync({
-      imports: [ConfigModule],
-      inject: [ConfigService],
-      useFactory: (config: ConfigService) => [
-        {
-          ttl: config.get<number>('THROTTLE_TTL'),
-          limit: config.get<number>('THROTTLE_LIMIT'),
-        },
-      ],
-    }),
-  ],
+  imports: [ThrottlerModule.forRoot(limiterOptions)],
   controllers: [CommonController],
   providers: [
     CommonService,
