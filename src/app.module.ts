@@ -1,24 +1,26 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { APP_FILTER } from '@nestjs/core';
+import { JwtModule } from '@nestjs/jwt';
+import { MongooseModule } from '@nestjs/mongoose';
 import { SentryModule } from '@sentry/nestjs/setup';
-import { AppController } from './app.controller';
+import configuration from './config/configuration';
 import { AppService } from './app.service';
+import { AppController } from './app.controller';
+import { CommonModule } from './common/module/common.module';
+import { CommonController } from './common/controller/common.controller';
+import { CommonService } from './common/service/common.service';
+import { LoggerService } from './common/service/logger.service';
+import { HttpExceptionFilter } from './common/filters/http-exception.filter';
+import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
+import { loggerMiddleware } from './common/middleware/logger.middleware';
+import { JwtStrategy } from './common/strategies/jwt.strategy';
 import { UserModule } from './module/user/user.module';
 import { AuthService } from './module/auth/auth.service';
 import { AuthController } from './module/auth/auth.controller';
 import { AuthModule } from './module/auth/auth.module';
-import { loggerMiddleware } from './common/middleware/logger.middleware';
-import { LoggerService } from './common/service/logger.service';
-import { CommonController } from './common/controller/common.controller';
-import { CommonService } from './common/service/common.service';
-import { CommonModule } from './common/module/common.module';
-import configuration from './config/configuration';
-import { APP_FILTER } from '@nestjs/core';
-import { HttpExceptionFilter } from './common/filters/http-exception.filter';
-import { MongooseModule } from '@nestjs/mongoose';
-import { JwtModule } from '@nestjs/jwt';
-import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
-import { JwtStrategy } from './common/strategies/jwt.strategy';
+import { ChatModule } from './module/chat/chat.module';
+import { ChatService } from './module/chat/chat.service';
 
 @Module({
   imports: [
@@ -47,18 +49,20 @@ import { JwtStrategy } from './common/strategies/jwt.strategy';
         };
       },
     }),
-    AuthModule,
-    UserModule,
     CommonModule,
+    UserModule,
+    AuthModule,
+    ChatModule,
   ],
   controllers: [AppController, AuthController, CommonController],
   providers: [
     AppService,
-    AuthService,
-    CommonService,
     JwtAuthGuard,
     JwtStrategy,
     LoggerService,
+    CommonService,
+    AuthService,
+    ChatService,
     { provide: APP_FILTER, useClass: HttpExceptionFilter },
   ],
   exports: [LoggerService, JwtAuthGuard],

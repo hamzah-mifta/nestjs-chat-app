@@ -17,6 +17,7 @@ import { Logger } from 'src/common/utils/logger.utils';
 import { LoginDto } from './dtos/login.dto';
 import { JwtService } from '@nestjs/jwt';
 import { RegisterDto } from './dtos/register.dto';
+import { ChatGateway } from '../chat/chat.gateway';
 
 @Injectable()
 export class AuthService {
@@ -26,9 +27,10 @@ export class AuthService {
   constructor(
     private readonly userRepository: UserRepository,
     private readonly jwtService: JwtService,
+    private readonly chatGateway: ChatGateway,
   ) {}
 
-  async login(loginDto: LoginDto): Promise<HttpResponse> {
+  async login(socketId: string, loginDto: LoginDto): Promise<HttpResponse> {
     try {
       const { email, password } = loginDto;
 
@@ -46,14 +48,19 @@ export class AuthService {
       }
 
       const payload = {
+        id: user._id.toString(),
         email: user.email,
         username: user.username,
       };
 
       const accessToken = await this.jwtService.signAsync(payload);
 
+      // store socket id
+      this.chatGateway.storeSocketId(user._id.toString(), socketId);
+
       const responseData = {
         id: user._id,
+        username: user.username,
         accessToken,
       };
 
