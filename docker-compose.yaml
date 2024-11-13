@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  app:
+    container_name: nestjs_chat_app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${PORT}:${PORT}"
+    environment:
+      - PORT=${PORT}
+      - NODE_ENV=${NODE_ENV}
+      - LOG_LEVEL=${LOG_LEVEL}
+      - SENTRY_DSN=${SENTRY_DSN}
+      - DATABASE_URI=${DATABASE_URI}
+      - JWT_SECRET=${JWT_SECRET}
+      - JWT_EXPIRATION=${JWT_EXPIRATION}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_REGION=${AWS_REGION}
+      - AWS_BUCKET_NAME=${AWS_BUCKET_NAME}
+      - THROTTLE_TTL=${THROTTLE_TTL}
+      - THROTTLE_LIMIT=${THROTTLE_LIMIT}
+      - CRYPTO_SALT_ROUNDS=${CRYPTO_SALT_ROUNDS}
+    networks:
+      - nestjs-chat-app-network
+    depends_on:
+      - mongo
+    
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_DATABASE: nestjsChatApp
+    ports:
+      - "127.0.0.1:27017:27017"
+    networks:
+      - nestjs-chat-app-network
+    volumes:
+      - mongo-data:/data/db
+
+networks:
+  nestjs-chat-app-network:
+    driver: bridge
+
+volumes:
+  mongo-data:
+    driver: local
