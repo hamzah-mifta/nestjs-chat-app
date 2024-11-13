@@ -1,0 +1,2044 @@
+{
+	"info": {
+		"_postman_id": "1c28a1e7-6970-4001-b17a-e47d8d12f854",
+		"name": "NestJS Chat App",
+		"description": "This Postman collection provides a set of API requests for interacting with the NestJS-based chat application. It is designed to facilitate development, testing, and exploration of the various features offered by the chat app.\n\nRepository: [https://github.com/hamzah-mifta/nestjs-chat-app](https://github.com/hamzah-mifta/nestjs-chat)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7629534"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"john.doe@gmail.com\",\n    \"password\": \"secretPassword\",\n    \"username\": \"johndoe\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1/auth/register",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"register"
+							]
+						},
+						"description": "### Register User\n\nThis endpoint allows users to register with the application.\n\n#### Request Body\n\n- email (string, required): The email address of the user.\n    \n- password (string, required): The password for the user account.\n    \n- username (string, required): The username chosen by the user.\n    \n\n#### Response\n\nThe response for this request is a JSON object with the following schema:\n\n``` json\n{\n  \"type\": \"object\",\n  \"properties\": {\n    \"success\": {\n      \"type\": \"boolean\"\n    },\n    \"statusCode\": {\n      \"type\": \"integer\"\n    },\n    \"message\": {\n      \"type\": \"string\"\n    },\n    \"data\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"email\": {\n          \"type\": \"string\"\n        },\n        \"username\": {\n          \"type\": \"string\"\n        }\n      }\n    }\n  }\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"john.doe@gmail.com\",\n    \"password\": \"secretPassword\",\n    \"username\": \"johndoe\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/v1/auth/register",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"v1",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "X-RateLimit-Limit-short",
+									"value": "3"
+								},
+								{
+									"key": "X-RateLimit-Remaining-short",
+									"value": "2"
+								},
+								{
+									"key": "X-RateLimit-Reset-short",
+									"value": "1"
+								},
+								{
+									"key": "X-RateLimit-Limit-medium",
+									"value": "20"
+								},
+								{
+									"key": "X-RateLimit-Remaining-medium",
+									"value": "19"
+								},
+								{
+									"key": "X-RateLimit-Reset-medium",
+									"value": "10"
+								},
+								{
+									"key": "X-RateLimit-Limit-long",
+									"value": "100"
+								},
+								{
+									"key": "X-RateLimit-Remaining-long",
+									"value": "99"
+								},
+								{
+									"key": "X-RateLimit-Reset-long",
+									"value": "60"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "133"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"85-r/7WzpkFF2ZQHXhVQ6GQoyEfauU\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 12 Nov 2024 04:33:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"statusCode\": 201,\n    \"message\": \"User registered successfully\",\n    \"data\": {\n        \"email\": \"john.doe@gmail.com\",\n        \"username\": \"johndoe\"\n    }\n}"
+						},
+						{
+							"name": "400 - Email already registered",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"john.doe@gmail.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/v1/auth/register",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"v1",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "X-RateLimit-Limit-short",
+									"value": "3"
+								},
+								{
+									"key": "X-RateLimit-Remaining-short",
+									"value": "2"
+								},
+								{
+									"key": "X-RateLimit-Reset-short",
+									"value": "1"
+								},
+								{
+									"key": "X-RateLimit-Limit-medium",
+									"value": "20"
+								},
+								{
+									"key": "X-RateLimit-Remaining-medium",
+									"value": "19"
+								},
+								{
+									"key": "X-RateLimit-Reset-medium",
+									"value": "10"
+								},
+								{
+									"key": "X-RateLimit-Limit-long",
+									"value": "100"
+								},
+								{
+									"key": "X-RateLimit-Remaining-long",
+									"value": "99"
+								},
+								{
+									"key": "X-RateLimit-Reset-long",
+									"value": "60"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "90"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5a-Wj6l839xSGh2eKZStJMylfIKGNY\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 13 Nov 2024 06:48:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"statusCode\": 400,\n    \"message\": \"Username or email already taken\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Check that the response status is 200",
+									"pm.test(\"Response status is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Check if the 'userId' field is present in the response body",
+									"pm.test(\"Response has access token\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.data).to.have.property(\"accessToken\");",
+									"});",
+									"",
+									"const jsonData = pm.response.json()",
+									"const token = jsonData.data?.accessToken;",
+									"if (token) {",
+									"    pm.environment.set(\"token\", token)",
+									"    console.log(\"Token saved to environment variable\")",
+									"} else {",
+									"    console.error(\"Token not found in response\")",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Socket-Id",
+								"value": "fcjIz0L0TZY3yQ_uAAAD",
+								"description": "Socket ID from client-side",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"john.doe@gmail.com\",\n    \"password\": \"secretPassword\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1/auth/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"login"
+							]
+						},
+						"description": "### POST /v1/auth/login\n\nThis endpoint is used to authenticate a user and obtain an access token.\n\n#### Request Headers\n\n- `Socket-Id` (string): The socket id from client-side listener. Used for identify the sender when private message sent to other user.\n    \n\n#### Request Body\n\n- `email` (string): The email address of the user.\n    \n- `password` (string): The password of the user.\n    \n\n#### Response\n\n- `success` (boolean): Indicates if the request was successful.\n    \n- `statusCode` (integer): The status code of the response.\n    \n- `message` (string): A message related to the response.\n    \n- `data.accessToken` (string): The access token obtained upon successful authentication."
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"robert@gmail.com\",\n    \"password\": \"secretPassword\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/v1/auth/login",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"v1",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "3"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "0"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "173077378373438"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "290"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"122-/Hs20/leMZU6ROMfoAy1IbUi8yM\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 07:18:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"statusCode\": 200,\n    \"message\": \"User logged in successfully\",\n    \"data\": {\n        \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJvYmVydEBnbWFpbC5jb20iLCJ1c2VybmFtZSI6InJvYmVydCIsImlhdCI6MTczMDc5MTEyMywiZXhwIjoxNzMwNzk0NzIzfQ.moGfskOCjNcAggyfjYUrrlQ44Kpo1ddiG5gZNEgztM4\"\n    }\n}"
+						},
+						{
+							"name": "400 - Empty email",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"\",\n    \"password\": \"secretPassword\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/v1/auth/sign-in",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"v1",
+										"auth",
+										"sign-in"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "71"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"47-xYWS0Ja34IVf4XddqYWUVQDmYv4\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 17 Sep 2024 08:34:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Username or email is required\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "400 - Incorrect password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"doe123@email.com\",\n    \"password\": \"secretPassword123\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/v1/auth/sign-in",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"v1",
+										"auth",
+										"sign-in"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "63"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3f-U6e9RonKQYiFPZ8SfPl9zoX8ccQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 17 Sep 2024 08:34:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Password is incorrect\",\n    \"data\": null\n}"
+						}
+					]
+				}
+			],
+			"description": "Contains API(s) for authentication"
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "get profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/v1/user/:id/profile",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								":id",
+								"profile"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "67223cf5ac17cc0932429e51"
+								}
+							]
+						},
+						"description": "### Get User Profile\n\nThis endpoint retrieves the profile of a user based on the provided user ID.\n\n#### Request\n\n- Method: GET\n    \n- Endpoint: {{host}}/v1/user/:id/profile\n    \n\n#### Response\n\nThe response for this request can be described using the following JSON schema:\n\n``` json\n{\n  \"type\": \"object\",\n  \"properties\": {\n    \"success\": {\n      \"type\": \"boolean\"\n    },\n    \"statusCode\": {\n      \"type\": \"integer\"\n    },\n    \"message\": {\n      \"type\": \"string\"\n    },\n    \"data\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"_id\": {\n          \"type\": \"string\"\n        },\n        \"email\": {\n          \"type\": \"string\"\n        },\n        \"username\": {\n          \"type\": \"string\"\n        },\n        \"createdAt\": {\n          \"type\": \"integer\"\n        },\n        \"profile\": {\n          \"type\": \"object\",\n          \"properties\": {\n            \"_id\": {\n              \"type\": \"string\"\n            },\n            \"displayName\": {\n              \"type\": \"string\"\n            },\n            \"birthday\": {\n              \"type\": \"string\"\n            },\n            \"interests\": {\n              \"type\": \"array\",\n              \"items\": {\n                \"type\": \"string\"\n              }\n            }\n          }\n        },\n        \"updatedAt\": {\n          \"type\": \"integer\"\n        }\n      }\n    }\n  }\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/v1/user/:id/profile",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"v1",
+										"user",
+										":id",
+										"profile"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "67223cf5ac17cc0932429e51"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "X-RateLimit-Limit-short",
+									"value": "3"
+								},
+								{
+									"key": "X-RateLimit-Remaining-short",
+									"value": "2"
+								},
+								{
+									"key": "X-RateLimit-Reset-short",
+									"value": "1"
+								},
+								{
+									"key": "X-RateLimit-Limit-medium",
+									"value": "20"
+								},
+								{
+									"key": "X-RateLimit-Remaining-medium",
+									"value": "19"
+								},
+								{
+									"key": "X-RateLimit-Reset-medium",
+									"value": "10"
+								},
+								{
+									"key": "X-RateLimit-Limit-long",
+									"value": "100"
+								},
+								{
+									"key": "X-RateLimit-Remaining-long",
+									"value": "99"
+								},
+								{
+									"key": "X-RateLimit-Reset-long",
+									"value": "60"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "363"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"16b-+J/W7WN/Wi2EdHBvS+idh7S1jeQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Nov 2024 03:49:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"statusCode\": 200,\n    \"message\": \"User profile updated successfully\",\n    \"data\": {\n        \"_id\": \"67223cf5ac17cc0932429e51\",\n        \"email\": \"robert@gmail.com\",\n        \"username\": \"robert\",\n        \"createdAt\": 1730297077,\n        \"profile\": {\n            \"_id\": \"672a0f904ad7754074491ca2\",\n            \"displayName\": \"Rob Stark\",\n            \"birthday\": \"2000-09-21T00:00:00.000Z\",\n            \"interests\": [\n                \"music\",\n                \"football\",\n                \"game\"\n            ]\n        },\n        \"updatedAt\": 1731296264\n    }\n}"
+						},
+						{
+							"name": "401",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/v1/user/:id/profile",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"v1",
+										"user",
+										":id",
+										"profile"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "67223cf5ac17cc0932429e51"
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "X-RateLimit-Limit-short",
+									"value": "3"
+								},
+								{
+									"key": "X-RateLimit-Remaining-short",
+									"value": "2"
+								},
+								{
+									"key": "X-RateLimit-Reset-short",
+									"value": "1"
+								},
+								{
+									"key": "X-RateLimit-Limit-medium",
+									"value": "20"
+								},
+								{
+									"key": "X-RateLimit-Remaining-medium",
+									"value": "19"
+								},
+								{
+									"key": "X-RateLimit-Reset-medium",
+									"value": "10"
+								},
+								{
+									"key": "X-RateLimit-Limit-long",
+									"value": "100"
+								},
+								{
+									"key": "X-RateLimit-Remaining-long",
+									"value": "99"
+								},
+								{
+									"key": "X-RateLimit-Reset-long",
+									"value": "60"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "70"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"46-XRaJDA4MVd022Eyspk90mMWJZxE\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 13 Nov 2024 07:28:33 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"statusCode\": 401,\n    \"message\": \"Unauthorized\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "404",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/v1/user/:id/profile",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"v1",
+										"user",
+										":id",
+										"profile"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "67223cf5ac17cc0932429e52"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "X-RateLimit-Limit-short",
+									"value": "3"
+								},
+								{
+									"key": "X-RateLimit-Remaining-short",
+									"value": "2"
+								},
+								{
+									"key": "X-RateLimit-Reset-short",
+									"value": "1"
+								},
+								{
+									"key": "X-RateLimit-Limit-medium",
+									"value": "20"
+								},
+								{
+									"key": "X-RateLimit-Remaining-medium",
+									"value": "19"
+								},
+								{
+									"key": "X-RateLimit-Reset-medium",
+									"value": "10"
+								},
+								{
+									"key": "X-RateLimit-Limit-long",
+									"value": "100"
+								},
+								{
+									"key": "X-RateLimit-Remaining-long",
+									"value": "98"
+								},
+								{
+									"key": "X-RateLimit-Reset-long",
+									"value": "39"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "73"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"49-evmemibnv5mRK99hCXmKdqNe7Eo\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 13 Nov 2024 07:28:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"statusCode\": 404,\n    \"message\": \"User not found\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "update profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"displayName\": \"Rob Stark\",\n    \"photoUrl\": \"https://nestjs.com\",\n    \"birthday\": \"2000-09-21\",\n    \"interests\": [\"music\", \"football\", \"game\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1/user/:id/profile",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								":id",
+								"profile"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "67223cf5ac17cc0932429e52"
+								}
+							]
+						},
+						"description": "### Update User Profile\n\nThis endpoint allows the client to update the profile of a user by providing the user ID and the updated profile information.\n\n#### Request Body\n\n- `displayName` (string, required): The updated display name of the user.\n    \n- `photoUrl` (string, required): The URL of the user's updated profile photo.\n    \n- `birthday` (string, required): The updated birthday of the user.\n    \n- `interests` (array of strings, required): An array of the user's updated interests.\n    \n\n#### Path Parameters\n\n- `id` (string, required): The ID of the user whose profile is being updated.\n    \n\n#### HTTP Request\n\n``` http\nPUT /v1/user/:id/profile\n\n ```\n\n#### Example\n\n``` json\n{\n  \"displayName\": \"Rob Stark\",\n  \"photoUrl\": \"https://nestjs.com\",\n  \"birthday\": \"2000-09-21\",\n  \"interests\": [\"music\"]\n}\n\n ```\n\n#### Response (JSON Schema)\n\n``` json\n{\n  \"type\": \"object\",\n  \"properties\": {\n    \"success\": {\n      \"type\": \"boolean\"\n    },\n    \"statusCode\": {\n      \"type\": \"integer\"\n    },\n    \"message\": {\n      \"type\": \"string\"\n    },\n    \"data\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"_id\": {\n          \"type\": \"string\"\n        },\n        \"displayName\": {\n          \"type\": \"string\"\n        },\n        \"birthday\": {\n          \"type\": \"string\"\n        },\n        \"interests\": {\n          \"type\": \"array\",\n          \"items\": {\n            \"type\": \"string\"\n          }\n        },\n        \"createdAt\": {\n          \"type\": \"integer\"\n        },\n        \"__v\": {\n          \"type\": \"integer\"\n        },\n        \"updatedAt\": {\n          \"type\": \"integer\"\n        }\n      }\n    }\n  }\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"displayName\": \"Rob Stark\",\n    \"photoUrl\": \"https://nestjs.com\",\n    \"birthday\": \"2000-09-21\",\n    \"interests\": [\"music\", \"football\", \"game\"]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/v1/user/:id/profile",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"v1",
+										"user",
+										":id",
+										"profile"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "67223cf5ac17cc0932429e51"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "X-RateLimit-Limit-short",
+									"value": "3"
+								},
+								{
+									"key": "X-RateLimit-Remaining-short",
+									"value": "2"
+								},
+								{
+									"key": "X-RateLimit-Reset-short",
+									"value": "1"
+								},
+								{
+									"key": "X-RateLimit-Limit-medium",
+									"value": "20"
+								},
+								{
+									"key": "X-RateLimit-Remaining-medium",
+									"value": "18"
+								},
+								{
+									"key": "X-RateLimit-Reset-medium",
+									"value": "7"
+								},
+								{
+									"key": "X-RateLimit-Limit-long",
+									"value": "100"
+								},
+								{
+									"key": "X-RateLimit-Remaining-long",
+									"value": "98"
+								},
+								{
+									"key": "X-RateLimit-Reset-long",
+									"value": "57"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "279"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"117-0c+5dSg9GZ0GPsjGQDyban6jELg\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Nov 2024 03:37:44 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"statusCode\": 200,\n    \"message\": \"User profile updated successfully\",\n    \"data\": {\n        \"_id\": \"672a0f904ad7754074491ca2\",\n        \"displayName\": \"Rob Stark\",\n        \"birthday\": \"2000-09-21T00:00:00.000Z\",\n        \"interests\": [\n            \"music\",\n            \"football\",\n            \"game\"\n        ],\n        \"createdAt\": 1730809744,\n        \"__v\": 0,\n        \"updatedAt\": 1731296264\n    }\n}"
+						},
+						{
+							"name": "401",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"displayName\": \"Rob Stark\",\n    \"photoUrl\": \"https://nestjs.com\",\n    \"birthday\": \"2000-09-21\",\n    \"interests\": [\"music\", \"football\", \"game\"]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/v1/user/:id/profile",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"v1",
+										"user",
+										":id",
+										"profile"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "67223cf5ac17cc0932429e51"
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "X-RateLimit-Limit-short",
+									"value": "3"
+								},
+								{
+									"key": "X-RateLimit-Remaining-short",
+									"value": "2"
+								},
+								{
+									"key": "X-RateLimit-Reset-short",
+									"value": "1"
+								},
+								{
+									"key": "X-RateLimit-Limit-medium",
+									"value": "20"
+								},
+								{
+									"key": "X-RateLimit-Remaining-medium",
+									"value": "19"
+								},
+								{
+									"key": "X-RateLimit-Reset-medium",
+									"value": "10"
+								},
+								{
+									"key": "X-RateLimit-Limit-long",
+									"value": "100"
+								},
+								{
+									"key": "X-RateLimit-Remaining-long",
+									"value": "99"
+								},
+								{
+									"key": "X-RateLimit-Reset-long",
+									"value": "60"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "70"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"46-XRaJDA4MVd022Eyspk90mMWJZxE\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 13 Nov 2024 07:28:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"statusCode\": 401,\n    \"message\": \"Unauthorized\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "404",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"displayName\": \"Rob Stark\",\n    \"photoUrl\": \"https://nestjs.com\",\n    \"birthday\": \"2000-09-21\",\n    \"interests\": [\"music\", \"football\", \"game\"]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/v1/user/:id/profile",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"v1",
+										"user",
+										":id",
+										"profile"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "67223cf5ac17cc0932429e52"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "X-RateLimit-Limit-short",
+									"value": "3"
+								},
+								{
+									"key": "X-RateLimit-Remaining-short",
+									"value": "2"
+								},
+								{
+									"key": "X-RateLimit-Reset-short",
+									"value": "1"
+								},
+								{
+									"key": "X-RateLimit-Limit-medium",
+									"value": "20"
+								},
+								{
+									"key": "X-RateLimit-Remaining-medium",
+									"value": "19"
+								},
+								{
+									"key": "X-RateLimit-Reset-medium",
+									"value": "10"
+								},
+								{
+									"key": "X-RateLimit-Limit-long",
+									"value": "100"
+								},
+								{
+									"key": "X-RateLimit-Remaining-long",
+									"value": "98"
+								},
+								{
+									"key": "X-RateLimit-Reset-long",
+									"value": "9"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "73"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"49-evmemibnv5mRK99hCXmKdqNe7Eo\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 13 Nov 2024 07:29:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"statusCode\": 404,\n    \"message\": \"User not found\",\n    \"data\": null\n}"
+						}
+					]
+				}
+			],
+			"description": "Contains API(s) for user profile"
+		},
+		{
+			"name": "common",
+			"item": [
+				{
+					"name": "upload file",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/hamz/Desktop/Screenshot 2024-09-17 at 13.51.51.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/common/upload",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"common",
+								"upload"
+							]
+						},
+						"description": "WIP"
+					},
+					"response": []
+				}
+			],
+			"description": "WIP"
+		},
+		{
+			"name": "chat",
+			"item": [
+				{
+					"name": "send private message",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"recipientId\": \"6732da830aeb093ff1f2419a\",\n    \"message\": \"Hi, John!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1/chat/private-message",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"chat",
+								"private-message"
+							]
+						},
+						"description": "This endpoint allows the user to send a private message to a specific recipient. The request should be sent as an HTTP POST to the specified URL with the recipient's ID and the message in the request body.\n\n### Request Body\n\n- recipientId (string, required): The user ID of the recipient.\n    \n- message (string, required): The message to be sent.\n    \n\n### Response\n\nThe response for this request is a JSON object with the following properties:\n\n- success (boolean): Indicates whether the request was successful.\n    \n- statusCode (integer): The status code of the response.\n    \n- message (string): Any additional message related to the response.\n    \n- data (null): This property will be null as there is no specific data returned for this request.\n    \n\n### JSON Schema\n\n``` json\n{\n    \"type\": \"object\",\n    \"properties\": {\n        \"success\": {\n            \"type\": \"boolean\"\n        },\n        \"statusCode\": {\n            \"type\": \"integer\"\n        },\n        \"message\": {\n            \"type\": \"string\"\n        },\n        \"data\": {\n            \"type\": \"null\"\n        }\n    }\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"recipientId\": \"6732da830aeb093ff1f24195\",\n    \"message\": \"Hi, John!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/v1/chat/private-message",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"v1",
+										"chat",
+										"private-message"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "X-RateLimit-Limit-short",
+									"value": "3"
+								},
+								{
+									"key": "X-RateLimit-Remaining-short",
+									"value": "2"
+								},
+								{
+									"key": "X-RateLimit-Reset-short",
+									"value": "1"
+								},
+								{
+									"key": "X-RateLimit-Limit-medium",
+									"value": "20"
+								},
+								{
+									"key": "X-RateLimit-Remaining-medium",
+									"value": "19"
+								},
+								{
+									"key": "X-RateLimit-Reset-medium",
+									"value": "10"
+								},
+								{
+									"key": "X-RateLimit-Limit-long",
+									"value": "100"
+								},
+								{
+									"key": "X-RateLimit-Remaining-long",
+									"value": "97"
+								},
+								{
+									"key": "X-RateLimit-Reset-long",
+									"value": "9"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "70"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"46-o7eKCDVFdVNFAF90Gp4FBb72fPo\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 13 Nov 2024 07:27:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"statusCode\": 200,\n    \"message\": \"Message sent\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "401",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"recipientId\": \"6732da830aeb093ff1f24195\",\n    \"message\": \"Hi, John!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/v1/chat/private-message",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"v1",
+										"chat",
+										"private-message"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "X-RateLimit-Limit-short",
+									"value": "3"
+								},
+								{
+									"key": "X-RateLimit-Remaining-short",
+									"value": "2"
+								},
+								{
+									"key": "X-RateLimit-Reset-short",
+									"value": "1"
+								},
+								{
+									"key": "X-RateLimit-Limit-medium",
+									"value": "20"
+								},
+								{
+									"key": "X-RateLimit-Remaining-medium",
+									"value": "19"
+								},
+								{
+									"key": "X-RateLimit-Reset-medium",
+									"value": "10"
+								},
+								{
+									"key": "X-RateLimit-Limit-long",
+									"value": "100"
+								},
+								{
+									"key": "X-RateLimit-Remaining-long",
+									"value": "97"
+								},
+								{
+									"key": "X-RateLimit-Reset-long",
+									"value": "60"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "70"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"46-XRaJDA4MVd022Eyspk90mMWJZxE\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 13 Nov 2024 07:27:33 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"statusCode\": 401,\n    \"message\": \"Unauthorized\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "500",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"recipientId\": \"67223cf5ac17cc0932429e521\",\n    \"message\": \"Hi, Robert!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/v1/chat/private-message",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"v1",
+										"chat",
+										"private-message"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "X-RateLimit-Limit-short",
+									"value": "3"
+								},
+								{
+									"key": "X-RateLimit-Remaining-short",
+									"value": "2"
+								},
+								{
+									"key": "X-RateLimit-Reset-short",
+									"value": "1"
+								},
+								{
+									"key": "X-RateLimit-Limit-medium",
+									"value": "20"
+								},
+								{
+									"key": "X-RateLimit-Remaining-medium",
+									"value": "19"
+								},
+								{
+									"key": "X-RateLimit-Reset-medium",
+									"value": "10"
+								},
+								{
+									"key": "X-RateLimit-Limit-long",
+									"value": "100"
+								},
+								{
+									"key": "X-RateLimit-Remaining-long",
+									"value": "99"
+								},
+								{
+									"key": "X-RateLimit-Reset-long",
+									"value": "60"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "81"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"51-I9Ns5bo8APvZ1LQtwLhkxW2h6Qo\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 13 Nov 2024 07:26:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"statusCode\": 500,\n    \"message\": \"Failed to send message\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "400",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"recipientId\": \"6732da830aeb093ff1f2419a\",\n    \"message\": \"Hi, John!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/v1/chat/private-message",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"v1",
+										"chat",
+										"private-message"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "X-RateLimit-Limit-short",
+									"value": "3"
+								},
+								{
+									"key": "X-RateLimit-Remaining-short",
+									"value": "2"
+								},
+								{
+									"key": "X-RateLimit-Reset-short",
+									"value": "1"
+								},
+								{
+									"key": "X-RateLimit-Limit-medium",
+									"value": "20"
+								},
+								{
+									"key": "X-RateLimit-Remaining-medium",
+									"value": "19"
+								},
+								{
+									"key": "X-RateLimit-Reset-medium",
+									"value": "10"
+								},
+								{
+									"key": "X-RateLimit-Limit-long",
+									"value": "100"
+								},
+								{
+									"key": "X-RateLimit-Remaining-long",
+									"value": "99"
+								},
+								{
+									"key": "X-RateLimit-Reset-long",
+									"value": "60"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "78"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4e-KTuNow+wnCmv9JX8w229fdIyTbs\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 13 Nov 2024 07:30:12 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"statusCode\": 400,\n    \"message\": \"Recipient not found\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "send broadcast message",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"Hello world!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1/chat/broadcast-message",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"chat",
+								"broadcast-message"
+							]
+						},
+						"description": "### Broadcast Message\n\nThis endpoint allows you to broadcast a message to all chat participants.\n\n**Request Body**\n\n- message (string, required): The message to be broadcasted.\n    \n\n#### Response\n\n- success (boolean): Indicates if the request was successful.\n    \n- statusCode (integer): The status code of the response.\n    \n- message (string): Any additional message related to the response.\n    \n- data (object): The data returned in the response, which is null in this case."
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"message\": \"Hello world!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/v1/chat/broadcast-message",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"v1",
+										"chat",
+										"broadcast-message"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "X-RateLimit-Limit-short",
+									"value": "3"
+								},
+								{
+									"key": "X-RateLimit-Remaining-short",
+									"value": "2"
+								},
+								{
+									"key": "X-RateLimit-Reset-short",
+									"value": "1"
+								},
+								{
+									"key": "X-RateLimit-Limit-medium",
+									"value": "20"
+								},
+								{
+									"key": "X-RateLimit-Remaining-medium",
+									"value": "19"
+								},
+								{
+									"key": "X-RateLimit-Reset-medium",
+									"value": "10"
+								},
+								{
+									"key": "X-RateLimit-Limit-long",
+									"value": "100"
+								},
+								{
+									"key": "X-RateLimit-Remaining-long",
+									"value": "98"
+								},
+								{
+									"key": "X-RateLimit-Reset-long",
+									"value": "38"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "70"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"46-o7eKCDVFdVNFAF90Gp4FBb72fPo\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 13 Nov 2024 03:35:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"statusCode\": 200,\n    \"message\": \"Message sent\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "401",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/v1/chat/broadcast-message",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"v1",
+										"chat",
+										"broadcast-message"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "X-RateLimit-Limit-short",
+									"value": "3"
+								},
+								{
+									"key": "X-RateLimit-Remaining-short",
+									"value": "2"
+								},
+								{
+									"key": "X-RateLimit-Reset-short",
+									"value": "1"
+								},
+								{
+									"key": "X-RateLimit-Limit-medium",
+									"value": "20"
+								},
+								{
+									"key": "X-RateLimit-Remaining-medium",
+									"value": "18"
+								},
+								{
+									"key": "X-RateLimit-Reset-medium",
+									"value": "6"
+								},
+								{
+									"key": "X-RateLimit-Limit-long",
+									"value": "100"
+								},
+								{
+									"key": "X-RateLimit-Remaining-long",
+									"value": "98"
+								},
+								{
+									"key": "X-RateLimit-Reset-long",
+									"value": "56"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "70"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"46-XRaJDA4MVd022Eyspk90mMWJZxE\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 13 Nov 2024 07:28:03 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"statusCode\": 401,\n    \"message\": \"Unauthorized\",\n    \"data\": null\n}"
+						}
+					]
+				}
+			],
+			"description": "Contains AP(s) for chat"
+		},
+		{
+			"name": "health",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/health",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"health"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/health",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"health"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "X-RateLimit-Limit-short",
+							"value": "3"
+						},
+						{
+							"key": "X-RateLimit-Remaining-short",
+							"value": "2"
+						},
+						{
+							"key": "X-RateLimit-Reset-short",
+							"value": "1"
+						},
+						{
+							"key": "X-RateLimit-Limit-medium",
+							"value": "20"
+						},
+						{
+							"key": "X-RateLimit-Remaining-medium",
+							"value": "19"
+						},
+						{
+							"key": "X-RateLimit-Reset-medium",
+							"value": "10"
+						},
+						{
+							"key": "X-RateLimit-Limit-long",
+							"value": "100"
+						},
+						{
+							"key": "X-RateLimit-Remaining-long",
+							"value": "99"
+						},
+						{
+							"key": "X-RateLimit-Reset-long",
+							"value": "60"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "87"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"57-2JWuhuqBAAFHBUebAjtJtDvlWAw\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 13 Nov 2024 06:47:48 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"statusCode\": 200,\n    \"message\": \"Success\",\n    \"data\": \"2024-11-13T06:47:48.756Z\"\n}"
+				}
+			]
+		}
+	]
+}
