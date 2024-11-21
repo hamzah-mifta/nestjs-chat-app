@@ -1,4 +1,4 @@
-# Real-time Chat Application with NestJS and Socket IO
+# Real-time Chat Application with NestJS and Socket.IO
 
 A simple real-time chat application built with NestJS, MongoDB, and Socket.IO for private messaging and chat features.
 

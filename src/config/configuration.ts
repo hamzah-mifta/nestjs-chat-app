@@ -21,7 +21,7 @@ export default () => ({
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
     region: process.env.AWS_REGION,
-    bucketName: process.env.AWS_BUCKET_NAME,
+    s3BucketName: process.env.AWS_S3_BUCKET_NAME,
   },
   throttle: {
     ttl: parseInt(process.env.THROTTLE_TTL) || 60 * 1000,
